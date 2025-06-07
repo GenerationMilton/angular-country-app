@@ -20,7 +20,7 @@ export interface RESTCountry {
     area:         number;
     demonyms:     Demonyms;
     cca3:         string;
-    translations: { [key: string]: Translation };
+    translations: { [key: string]: Translation }; //Record<string,{}>
     flag:         string;
     maps:         Maps;
     population:   number;
