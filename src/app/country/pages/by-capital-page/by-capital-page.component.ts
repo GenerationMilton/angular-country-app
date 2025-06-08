@@ -21,12 +21,12 @@ export class ByCapitalPageComponent {
   query = signal('');
 
   countryResource = resource({
-    request: () => ({ query: this.query() }),
-    loader: async({ request })=>{
-      if(!request.query) return [];
+    params: () => ({ query: this.query() }),
+    loader: async({ params })=>{
+      if(!params.query) return [];
 
       return await firstValueFrom(
-        this.countryService.searchByCapital(request.query)
+        this.countryService.searchByCapital(params.query)
       );
     },
   });

@@ -19,12 +19,12 @@ export class ByCountryPageComponent {
   query = signal('');
 
   countryResource = resource({
-    request: () => ({ query: this.query() }),
-    loader: async({ request })=>{
-      if(!request.query) return [];
+    params: () => ({ query: this.query() }),
+    loader: async({ params })=>{
+      if(!params.query) return [];
 
       return await firstValueFrom(
-        this.countryService.searchByCountry(request.query)
+        this.countryService.searchByCountry(params.query)
       );
     },
   });
