@@ -26,15 +26,18 @@ export class ByCapitalPageComponent {
 
   onSearch(query: string){
     this.countryService.searchByCapital(query)
-      .subscribe( (countries) =>{
+      .subscribe( {
+        next: (countries) => {
+         
         this.isLoading.set(false);
         this.countries.set(countries);
 
-        //mapper
-
-       // const c = CountryMapper.mapRestCountryArrayToCountryArray(countries);
-
-        console.log(countries);
-      })
+        },
+        error: (err) =>{
+          this.isLoading.set(false);
+          this.countries.set([]);
+          this.isError.set( err);
+        },
+      });
   }
 }
