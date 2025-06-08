@@ -2,8 +2,7 @@ import { Component, inject, resource, signal } from '@angular/core';
 import { SearchInputComponent } from "../../components/search-input/search-input.component";
 import { CountryListComponent } from "../../components/country-list/country-list.component";
 import { CountryService } from '../../services/country.service';
-import { RESTCountry } from '../../interfaces/rest-countries.interfaces';
-import { CountryMapper } from '../../components/mappers/country.mapper';
+
 import { Country } from '../../interfaces/country.interface';
 import { firstValueFrom } from 'rxjs';
 
@@ -22,7 +21,7 @@ export class ByCapitalPageComponent {
   query = signal('');
 
   countryResource = resource({
-    request: () => ({ query: this.query()}),
+    request: () => ({ query: this.query() }),
     loader: async({ request })=>{
       if(!request.query) return [];
 
